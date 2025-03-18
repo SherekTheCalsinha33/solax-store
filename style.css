@@ -1,0 +1,100 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo do Body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Estilo do Header */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+header .header-content {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav ul {
+    list-style: none;
+}
+
+header nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Estilo do Conteúdo Principal (Produtos) */
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Grid responsivo */
+    gap: 30px;
+    width: 90%;
+    margin: 20px auto;
+    padding-bottom: 30px;
+}
+
+/* Estilo do Cartão de Produto */
+.product-card {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd; /* Borda do cartão */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.product-card:hover {
+    transform: translateY(-10px); /* Levanta o cartão ao passar o mouse */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra mais forte */
+}
+
+/* Estilo do título do produto */
+.product-card h2 {
+    font-size: 1.6rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Estilo da imagem do produto */
+.product-card img {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: contain;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+
+/* Estilo do footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+}
+
+footer p {
+    font-size: 0.9rem;
+}

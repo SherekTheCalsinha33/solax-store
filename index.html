@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solax Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+        }
+        header {
+            background: linear-gradient(90deg, #ff8c00, #ffd700);
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(255, 140, 0, 0.5);
+        }
+        .logo {
+            max-width: 150px;
+        }
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .product {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            width: 250px;
+            transition: transform 0.3s;
+        }
+        .product:hover {
+            transform: scale(1.05);
+        }
+        .product img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .godly {
+            border: 2px solid #ff4500;
+            box-shadow: 0 0 15px rgba(255, 69, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="/mnt/data/image.png" alt="Solax Store" class="logo">
+        <h1>Solax Store</h1>
+    </header>
+    <section class="products">
+        <div class="product godly">
+            <img src="https://cdn.nookazon.com/mm2/items/6413214382.png" alt="Heartblade Knife">
+            <h2>Heartblade Knife</h2>
+            <p>Preço: R$ 25,00</p>
+        </div>
+        <div class="product godly">
+            <img src="https://cdn.nookazon.com/mm2/items/7800847534.png" alt="Harvester Gun">
+            <h2>Harvester Gun</h2>
+            <p>Preço: R$ 99,94</p>
+        </div>
+        <div class="product godly">
+            <img src="https://cdn.nookazon.com/mm2/Sets/d5c491cba19f8385f3924868f2b75231Ancient%20Set.jpeg" alt="Batwing Knife">
+            <h2>Batwing Knife</h2>
+            <p>Preço: R$ 32,12</p>
+        </div>
+        <div class="product godly">
+            <img src="https://cdn.nookazon.com/mm2/items/11874071041.png" alt="Icepiercer Knife">
+            <h2>Icepiercer Knife</h2>
+            <p>Preço: R$ 95,25</p>
+        </div>
+        <div class="product godly">
+            <img src="https://cdn.nookazon.com/mm2/items/332021011.png" alt="Candy Cane Knife">
+            <h2>Candy Cane Knife</h2>
+            <p>Preço: R$ 50,66</p>
+        </div>
+    </section>
+</body>
+</html>
