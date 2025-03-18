@@ -74,21 +74,21 @@
         .credit-card { background: #28a745; color: white; }
         .paypal { background: #0070ba; color: white; }
         .pix { background: #00bfa5; color: white; }
-        .login-form {
-            background: rgba(255, 255, 255, 0.1);
+        
+        .sidebar {
+            position: fixed;
+            right: -300px;
+            top: 0;
+            width: 300px;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
             padding: 20px;
-            border-radius: 10px;
-            text-align: left;
+            transition: right 0.3s ease;
         }
-        .login-form input {
-            display: block;
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
+        .sidebar.active {
+            right: 0;
         }
-        .login-form button {
+        .sidebar button {
             background: #ff4500;
             color: white;
             padding: 10px;
@@ -96,6 +96,7 @@
             cursor: pointer;
             border-radius: 5px;
             width: 100%;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -118,13 +119,14 @@
             <a href="#checkout" onclick="openCheckout('Harvester Gun', '99.94')" class="buy-button">Comprar</a>
         </div>
     </section>
+    <button onclick="toggleSidebar()">Registrar</button>
+    <div class="sidebar" id="sidebar">
+        <h2>Registrar</h2>
+        <input type="text" id="discord-name" placeholder="Nome no Discord">
+        <input type="text" id="roblox-name" placeholder="Nome no Roblox">
+        <button onclick="saveUserInfo()">Registrar</button>
+    </div>
     <section class="checkout-container">
-        <div class="login-form">
-            <h2>Registrar</h2>
-            <input type="text" id="discord-name" placeholder="Nome no Discord">
-            <input type="text" id="roblox-name" placeholder="Nome no Roblox">
-            <button onclick="saveUserInfo()">Registrar</button>
-        </div>
         <div id="checkout" style="display: none;">
             <h2>Finalizar Compra</h2>
             <p id="selected-item"></p>
@@ -149,7 +151,6 @@
             let discordName = localStorage.getItem('discordName') || 'Não informado';
             let robloxName = localStorage.getItem('robloxName') || 'Não informado';
             alert('Pagamento realizado com ' + method + '!');
-            sendDiscordNotification(item, price, method, discordName, robloxName);
         }
         
         function saveUserInfo() {
@@ -160,16 +161,8 @@
             alert('Usuário registrado com sucesso!');
         }
         
-        function sendDiscordNotification(item, price, method, discord, roblox) {
-            const webhookURL = 'https://discord.com/api/webhooks/1351525407370776577/S-u-VUocXsO41_AkCgSoWENStqAIvxZ07Po49oGbJHD2VRz2MRqniE8BgKgF1fGTbBaI';
-            const message = {
-                content: `Nova compra realizada!\n${item}\n${price}\nMétodo: ${method}\nDiscord: ${discord}\nRoblox: ${roblox}`
-            };
-            fetch(webhookURL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(message)
-            }).catch(err => console.error('Erro ao enviar notificação:', err));
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
         }
     </script>
 </body>
