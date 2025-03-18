@@ -58,6 +58,19 @@
             cursor: pointer;
             text-decoration: none;
         }
+        .checkout-container {
+            margin-top: 50px;
+        }
+        .payment-options button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .credit-card { background: #28a745; color: white; }
+        .paypal { background: #0070ba; color: white; }
+        .pix { background: #00bfa5; color: white; }
     </style>
 </head>
 <body>
@@ -70,32 +83,38 @@
             <img src="https://cdn.nookazon.com/mm2/items/6413214382.png" alt="Heartblade Knife">
             <h2>Heartblade Knife</h2>
             <p>Preço: R$ 25,00</p>
-            <a href="checkout.html?item=Heartblade%20Knife&price=25.00" class="buy-button">Comprar</a>
+            <a href="#checkout" onclick="openCheckout('Heartblade Knife', '25.00')" class="buy-button">Comprar</a>
         </div>
         <div class="product godly">
             <img src="https://cdn.nookazon.com/mm2/items/7800847534.png" alt="Harvester Gun">
             <h2>Harvester Gun</h2>
             <p>Preço: R$ 99,94</p>
-            <a href="checkout.html?item=Harvester%20Gun&price=99.94" class="buy-button">Comprar</a>
+            <a href="#checkout" onclick="openCheckout('Harvester Gun', '99.94')" class="buy-button">Comprar</a>
         </div>
         <div class="product godly">
             <img src="https://cdn.nookazon.com/mm2/Sets/d5c491cba19f8385f3924868f2b75231Ancient%20Set.jpeg" alt="Batwing Knife">
             <h2>Batwing Knife</h2>
             <p>Preço: R$ 32,12</p>
-            <a href="checkout.html?item=Batwing%20Knife&price=32.12" class="buy-button">Comprar</a>
-        </div>
-        <div class="product godly">
-            <img src="https://cdn.nookazon.com/mm2/items/11874071041.png" alt="Icepiercer Knife">
-            <h2>Icepiercer Knife</h2>
-            <p>Preço: R$ 95,25</p>
-            <a href="checkout.html?item=Icepiercer%20Knife&price=95.25" class="buy-button">Comprar</a>
-        </div>
-        <div class="product godly">
-            <img src="https://cdn.nookazon.com/mm2/items/332021011.png" alt="Candy Cane Knife">
-            <h2>Candy Cane Knife</h2>
-            <p>Preço: R$ 50,66</p>
-            <a href="checkout.html?item=Candy%20Cane%20Knife&price=50.66" class="buy-button">Comprar</a>
+            <a href="#checkout" onclick="openCheckout('Batwing Knife', '32.12')" class="buy-button">Comprar</a>
         </div>
     </section>
+    <section id="checkout" class="checkout-container" style="display: none;">
+        <h2>Finalizar Compra</h2>
+        <p id="selected-item"></p>
+        <p id="selected-price"></p>
+        <div class="payment-options">
+            <button class="credit-card" onclick="alert('Pagamento com Cartão de Crédito processado!')">Cartão de Crédito</button>
+            <button class="paypal" onclick="alert('Redirecionando para PayPal!')">PayPal</button>
+            <button class="pix" onclick="alert('Chave PIX gerada!')">PIX</button>
+        </div>
+    </section>
+    <script>
+        function openCheckout(item, price) {
+            document.getElementById('selected-item').innerText = 'Produto: ' + item;
+            document.getElementById('selected-price').innerText = 'Preço: R$ ' + price;
+            document.getElementById('checkout').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
+]
