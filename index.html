@@ -60,6 +60,9 @@
         }
         .checkout-container {
             margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
         .payment-options button {
             margin: 10px;
@@ -71,6 +74,29 @@
         .credit-card { background: #28a745; color: white; }
         .paypal { background: #0070ba; color: white; }
         .pix { background: #00bfa5; color: white; }
+        .login-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+        }
+        .login-form input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        .login-form button {
+            background: #ff4500;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -91,21 +117,23 @@
             <p>Preço: R$ 99,94</p>
             <a href="#checkout" onclick="openCheckout('Harvester Gun', '99.94')" class="buy-button">Comprar</a>
         </div>
-        <div class="product godly">
-            <img src="https://cdn.nookazon.com/mm2/Sets/d5c491cba19f8385f3924868f2b75231Ancient%20Set.jpeg" alt="Batwing Knife">
-            <h2>Batwing Knife</h2>
-            <p>Preço: R$ 32,12</p>
-            <a href="#checkout" onclick="openCheckout('Batwing Knife', '32.12')" class="buy-button">Comprar</a>
-        </div>
     </section>
-    <section id="checkout" class="checkout-container" style="display: none;">
-        <h2>Finalizar Compra</h2>
-        <p id="selected-item"></p>
-        <p id="selected-price"></p>
-        <div class="payment-options">
-            <button class="credit-card" onclick="processPayment('Cartão de Crédito')">Cartão de Crédito</button>
-            <button class="paypal" onclick="processPayment('PayPal')">PayPal</button>
-            <button class="pix" onclick="processPayment('PIX')">PIX</button>
+    <section class="checkout-container">
+        <div class="login-form">
+            <h2>Registrar</h2>
+            <input type="text" id="discord-name" placeholder="Nome no Discord">
+            <input type="text" id="roblox-name" placeholder="Nome no Roblox">
+            <button onclick="saveUserInfo()">Registrar</button>
+        </div>
+        <div id="checkout" style="display: none;">
+            <h2>Finalizar Compra</h2>
+            <p id="selected-item"></p>
+            <p id="selected-price"></p>
+            <div class="payment-options">
+                <button class="credit-card" onclick="processPayment('Cartão de Crédito')">Cartão de Crédito</button>
+                <button class="paypal" onclick="processPayment('PayPal')">PayPal</button>
+                <button class="pix" onclick="processPayment('PIX')">PIX</button>
+            </div>
         </div>
     </section>
     <script>
@@ -118,22 +146,28 @@
         function processPayment(method) {
             let item = document.getElementById('selected-item').innerText;
             let price = document.getElementById('selected-price').innerText;
+            let discordName = localStorage.getItem('discordName') || 'Não informado';
+            let robloxName = localStorage.getItem('robloxName') || 'Não informado';
             alert('Pagamento realizado com ' + method + '!');
-            sendDiscordNotification(item, price, method);
+            sendDiscordNotification(item, price, method, discordName, robloxName);
         }
         
-        function sendDiscordNotification(item, price, method) {
-            const webhookURL = 'https://discord.com/api/webhooks/1351394025579741214/DLpdw_W0karUfVsofxzz4ph7ItPyu_9jA-M_YbSFxsgwnu1_he_Na5tI1vBelT4jC2Yt';
-            
+        function saveUserInfo() {
+            let discordName = document.getElementById('discord-name').value;
+            let robloxName = document.getElementById('roblox-name').value;
+            localStorage.setItem('discordName', discordName);
+            localStorage.setItem('robloxName', robloxName);
+            alert('Usuário registrado com sucesso!');
+        }
+        
+        function sendDiscordNotification(item, price, method, discord, roblox) {
+            const webhookURL = 'SUA_WEBHOOK_URL_AQUI';
             const message = {
-                content: `Nova compra realizada!\n${item}\n${price}\nMétodo: ${method}`
+                content: `Nova compra realizada!\n${item}\n${price}\nMétodo: ${method}\nDiscord: ${discord}\nRoblox: ${roblox}`
             };
-            
             fetch(webhookURL, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(message)
             }).catch(err => console.error('Erro ao enviar notificação:', err));
         }
