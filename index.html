@@ -48,25 +48,27 @@
             box-shadow: 0 0 15px rgba(255, 69, 0, 0.7);
         }
         .buy-button {
-            background-color: #ff4500;
+            background: #ff4500;
             color: white;
-            border: none;
             padding: 10px;
-            margin-top: 10px;
-            width: 100%;
-            font-size: 16px;
+            border: none;
             cursor: pointer;
+            margin-top: 10px;
             border-radius: 5px;
-            transition: background 0.3s;
         }
         .buy-button:hover {
-            background-color: #e03e00;
+            background: #ff6347;
         }
     </style>
+    <script>
+        function comprar(produto, preco) {
+            window.location.href = `checkout.html?produto=${encodeURIComponent(produto)}&preco=${encodeURIComponent(preco)}`;
+        }
+    </script>
 </head>
 <body>
     <header>
-        <img src="/mnt/data/image.png" alt="Solax Store" class="logo">
+        <img src="logo.png" alt="Solax Store" class="logo">
         <h1>Solax Store</h1>
     </header>
     <section class="products">
@@ -74,31 +76,13 @@
             <img src="https://cdn.nookazon.com/mm2/items/6413214382.png" alt="Heartblade Knife">
             <h2>Heartblade Knife</h2>
             <p>Preço: R$ 25,00</p>
-            <button class="buy-button">Comprar</button>
+            <button class="buy-button" onclick="comprar('Heartblade Knife', '25,00')">Comprar</button>
         </div>
         <div class="product godly">
             <img src="https://cdn.nookazon.com/mm2/items/7800847534.png" alt="Harvester Gun">
             <h2>Harvester Gun</h2>
             <p>Preço: R$ 99,94</p>
-            <button class="buy-button">Comprar</button>
-        </div>
-        <div class="product godly">
-            <img src="https://cdn.nookazon.com/mm2/Sets/d5c491cba19f8385f3924868f2b75231Ancient%20Set.jpeg" alt="Batwing Knife">
-            <h2>Batwing Knife</h2>
-            <p>Preço: R$ 32,12</p>
-            <button class="buy-button">Comprar</button>
-        </div>
-        <div class="product godly">
-            <img src="https://cdn.nookazon.com/mm2/items/11874071041.png" alt="Icepiercer Knife">
-            <h2>Icepiercer Knife</h2>
-            <p>Preço: R$ 95,25</p>
-            <button class="buy-button">Comprar</button>
-        </div>
-        <div class="product godly">
-            <img src="https://cdn.nookazon.com/mm2/items/332021011.png" alt="Candy Cane Knife">
-            <h2>Candy Cane Knife</h2>
-            <p>Preço: R$ 50,66</p>
-            <button class="buy-button">Comprar</button>
+            <button class="buy-button" onclick="comprar('Harvester Gun', '99,94')">Comprar</button>
         </div>
     </section>
 </body>
