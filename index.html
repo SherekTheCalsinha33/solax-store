@@ -103,9 +103,9 @@
         <p id="selected-item"></p>
         <p id="selected-price"></p>
         <div class="payment-options">
-            <button class="credit-card" onclick="alert('Pagamento com Cartão de Crédito processado!')">Cartão de Crédito</button>
-            <button class="paypal" onclick="alert('Redirecionando para PayPal!')">PayPal</button>
-            <button class="pix" onclick="alert('Chave PIX gerada!')">PIX</button>
+            <button class="credit-card" onclick="processPayment('Cartão de Crédito')">Cartão de Crédito</button>
+            <button class="paypal" onclick="processPayment('PayPal')">PayPal</button>
+            <button class="pix" onclick="processPayment('PIX')">PIX</button>
         </div>
     </section>
     <script>
@@ -114,7 +114,29 @@
             document.getElementById('selected-price').innerText = 'Preço: R$ ' + price;
             document.getElementById('checkout').style.display = 'block';
         }
+        
+        function processPayment(method) {
+            let item = document.getElementById('selected-item').innerText;
+            let price = document.getElementById('selected-price').innerText;
+            alert('Pagamento realizado com ' + method + '!');
+            sendDiscordNotification(item, price, method);
+        }
+        
+        function sendDiscordNotification(item, price, method) {
+            const webhookURL = 'https://discord.com/api/webhooks/1351394025579741214/DLpdw_W0karUfVsofxzz4ph7ItPyu_9jA-M_YbSFxsgwnu1_he_Na5tI1vBelT4jC2Yt';
+            
+            const message = {
+                content: `Nova compra realizada!\n${item}\n${price}\nMétodo: ${method}`
+            };
+            
+            fetch(webhookURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(message)
+            }).catch(err => console.error('Erro ao enviar notificação:', err));
+        }
     </script>
 </body>
 </html>
-]
